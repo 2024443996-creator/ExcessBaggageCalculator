@@ -1,11 +1,12 @@
-
 package com.example.excessbaggagecalculator;
 
 import android.os.Bundle;
 import android.content.Intent;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,10 +27,12 @@ public class MainActivity extends AppCompatActivity {
     // Output components
     TextView tvExcessWeight, tvExcessCharge, tvTotalPayable;
 
+    // Results layout
+    LinearLayout layoutResults;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         // Connect XML components
@@ -45,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
         tvExcessWeight = findViewById(R.id.tvExcessWeight);
         tvExcessCharge = findViewById(R.id.tvExcessCharge);
         tvTotalPayable = findViewById(R.id.tvTotalPayable);
+
+        layoutResults = findViewById(R.id.layoutResults);
+
+        // Hide results when application starts
+        layoutResults.setVisibility(View.GONE);
 
         // Ticket class options
         String[] ticketClasses = {
@@ -73,15 +81,13 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.this,
                     AboutActivity.class
             );
-
             startActivity(intent);
         });
 
         // Share button
         btnShare.setOnClickListener(v -> shareApplication());
 
-    } // End of onCreate()
-
+    }
 
     // =====================================
     // CALCULATE EXCESS BAGGAGE FEE
@@ -91,6 +97,9 @@ public class MainActivity extends AppCompatActivity {
 
         String weightInput = etWeight.getText().toString().trim();
         String rateInput = etRate.getText().toString().trim();
+
+        // Hide previous results before validation
+        layoutResults.setVisibility(View.GONE);
 
         // Validate empty weight
         if (weightInput.isEmpty()) {
@@ -112,10 +121,10 @@ public class MainActivity extends AppCompatActivity {
             double ratePerKg = Double.parseDouble(rateInput);
 
             // Validate negative and invalid values
-            if (!Double.isFinite(baggageWeight) ||
-                    !Double.isFinite(ratePerKg) ||
-                    baggageWeight < 0 ||
-                    ratePerKg < 0) {
+            if (!Double.isFinite(baggageWeight)
+                    || !Double.isFinite(ratePerKg)
+                    || baggageWeight < 0
+                    || ratePerKg < 0) {
 
                 Toast.makeText(
                         this,
@@ -178,6 +187,9 @@ public class MainActivity extends AppCompatActivity {
                     )
             );
 
+            // Show results only after successful calculation
+            layoutResults.setVisibility(View.VISIBLE);
+
         } catch (NumberFormatException e) {
 
             Toast.makeText(
@@ -189,15 +201,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     // =====================================
     // SHARE APPLICATION
     // =====================================
 
     private void shareApplication() {
 
-        // Replace this with your actual GitHub repository URL later
-        String appUrl = "https://github.com/";
+        String appUrl =
+                "https://github.com/2024443996-creator/ExcessBaggageCalculator";
 
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
 
@@ -221,4 +232,4 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-} // End of MainActivity class
+}
