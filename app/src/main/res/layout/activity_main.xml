@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,7 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingBottom="24dp">
-
 
         <!-- CUSTOM TOOLBAR -->
         <LinearLayout
@@ -154,53 +154,63 @@
                 android:textColor="@color/white"
                 android:backgroundTint="@color/purple_dark" />
 
-            <!-- RESULTS TITLE -->
-            <TextView
+            <!-- RESULTS CONTAINER: HIDDEN INITIALLY -->
+            <LinearLayout
+                android:id="@+id/layoutResults"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CALCULATION RESULTS"
-                android:textColor="@color/purple_dark"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginTop="28dp"
-                android:layout_marginBottom="12dp" />
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_marginTop="28dp">
 
-            <!-- EXCESS WEIGHT -->
-            <TextView
-                android:id="@+id/tvExcessWeight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Excess Weight: 0.00 kg"
-                android:textColor="#333333"
-                android:textSize="16sp"
-                android:padding="12dp"
-                android:background="@color/white"
-                android:layout_marginBottom="8dp" />
+                <!-- RESULTS TITLE -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CALCULATION RESULTS"
+                    android:textColor="@color/purple_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
 
-            <!-- EXCESS CHARGE -->
-            <TextView
-                android:id="@+id/tvExcessCharge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Excess Charge: RM 0.00"
-                android:textColor="#333333"
-                android:textSize="16sp"
-                android:padding="12dp"
-                android:background="@color/white"
-                android:layout_marginBottom="8dp" />
+                <!-- EXCESS WEIGHT -->
+                <TextView
+                    android:id="@+id/tvExcessWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Excess Weight: 0.00 kg"
+                    android:textColor="#333333"
+                    android:textSize="16sp"
+                    android:padding="12dp"
+                    android:background="@color/white"
+                    android:layout_marginBottom="8dp" />
 
-            <!-- TOTAL PAYABLE -->
-            <TextView
-                android:id="@+id/tvTotalPayable"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Total Payable: RM 0.00"
-                android:textColor="@color/purple_dark"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:padding="16dp"
-                android:background="@color/white"
-                android:layout_marginBottom="24dp" />
+                <!-- EXCESS CHARGE -->
+                <TextView
+                    android:id="@+id/tvExcessCharge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Excess Charge: RM 0.00"
+                    android:textColor="#333333"
+                    android:textSize="16sp"
+                    android:padding="12dp"
+                    android:background="@color/white"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- TOTAL PAYABLE -->
+                <TextView
+                    android:id="@+id/tvTotalPayable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total Payable: RM 0.00"
+                    android:textColor="@color/purple_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:padding="16dp"
+                    android:background="@color/white"
+                    android:layout_marginBottom="24dp" />
+
+            </LinearLayout>
 
             <!-- INSTRUCTIONS -->
             <TextView
@@ -211,6 +221,7 @@
                 android:textSize="14sp"
                 android:padding="16dp"
                 android:background="@color/white"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp" />
 
             <!-- ABOUT BUTTON -->
